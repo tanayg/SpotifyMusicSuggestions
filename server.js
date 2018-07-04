@@ -10,6 +10,7 @@ function compile(str, path) {
     .set('filename', path)
     .use(nib())
 }
+
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
 app.use(logger('dev'))
@@ -21,6 +22,6 @@ app.use(stylus.middleware(
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', function (req, res) {
-  res.end('Hi there!')
+  res.end('Hello World!')
 })
 app.listen(3000)
