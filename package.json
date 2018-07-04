@@ -1,0 +1,28 @@
+{
+  "name": "spotifymusicsuggestions",
+  "version": "1.0.0",
+  "description": "Shows Spotify Top Songs/Artists and gives you suggestions",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.0.0",
+    "jade": "^1.11.0",
+    "morgan": "^1.9.0",
+    "nib": "^1.1.2",
+    "stylus": "^0.54.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanayg/SpotifyMusicSuggestions.git"
+  },
+  "author": "Tanay Gottigundala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tanayg/SpotifyMusicSuggestions/issues"
+  },
+  "homepage": "https://github.com/tanayg/SpotifyMusicSuggestions#readme"
+}
