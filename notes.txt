@@ -8,3 +8,4 @@ Tasks
 * Figma Protoype
 * Fetch data from Spotify
 * Figure out how to use stylus, nib, and jade
+* Figure out how to make websites look pretty
