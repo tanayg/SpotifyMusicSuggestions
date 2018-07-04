@@ -1,0 +1,10 @@
+Useful links
+1. Middleware - https://github.com/senchalabs/connect#middleware
+2. Spotify API Reference - https://developer.spotify.com/documentation/web-api/reference/
+3. Github Project - https://github.com/tanayg/SpotifyMusicSuggestions
+4. Localhost - http://localhost:3000/
+
+Tasks
+* Figma Protoype
+* Fetch data from Spotify
+* Figure out how to use stylus, nib, and jade
