@@ -3,6 +3,7 @@ Useful links
 2. Spotify API Reference - https://developer.spotify.com/documentation/web-api/reference/
 3. Github Project - https://github.com/tanayg/SpotifyMusicSuggestions
 4. Localhost - http://localhost:3000/
+5. Spotify Authentication Guide - https://github.com/spotify/web-api-auth-examples
 
 Tasks
 * Figma Protoype
