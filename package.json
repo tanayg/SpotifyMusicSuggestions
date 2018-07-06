@@ -4,10 +4,13 @@
   "description": "Shows Spotify Top Songs/Artists and gives you suggestions",
   "main": "server.js",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "express": "^4.0.0",
     "jade": "^1.11.0",
     "morgan": "^1.9.0",
     "nib": "^1.1.2",
+    "querystring": "^0.2.0",
     "stylus": "^0.54.5"
   },
   "devDependencies": {},

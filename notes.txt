@@ -10,3 +10,6 @@ Tasks
 * Fetch data from Spotify
 * Figure out how to use stylus, nib, and jade
 * Figure out how to make websites look pretty
+
+Client ID 8121c945a73d47149feb3d7368cf6241
+Client Secret bbbc6f25ed394a60a774fed961cb9fc1
