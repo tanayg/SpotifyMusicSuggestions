@@ -4,6 +4,7 @@
   "description": "Shows Spotify Top Songs/Artists and gives you suggestions",
   "main": "server.js",
   "dependencies": {
+    "Buffer": "0.0.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "express": "^4.0.0",
@@ -11,6 +12,8 @@
     "morgan": "^1.9.0",
     "nib": "^1.1.2",
     "querystring": "^0.2.0",
+    "request": "^2.87.0",
+    "spotify-web-api-node": "^3.1.1",
     "stylus": "^0.54.5"
   },
   "devDependencies": {},

@@ -6,24 +6,12 @@ var logger = require('morgan');
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
-
-// Spotify variables
-var client_id = '8121c945a73d47149feb3d7368cf6241';
-var client_secret = 'bbbc6f25ed394a60a774fed961cb9fc1';
-var redirect_uri = 'http://localhost:3000/top';
-var generateRandomString = function(length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
-
-var stateKey = 'spotify_auth_state';
+var request = require('request');
+var Buffer = require('Buffer');
+var SpotifyWebApi = require('spotify-web-api-node');
 
 
+// Setup
 var app = express();
 
 function compile(str, path) {
@@ -46,17 +34,41 @@ app.use(express.static(__dirname + '/public'))
   .use(cookieParser());
 
 
-app.get('/', function (req, res, next) { //Before login
+// Home Page
+app.get('/', function (req, res, next) { 
   res.render('home');
 })
 
 
+// Spotify variables
+var client_id = '8121c945a73d47149feb3d7368cf6241';
+var client_secret = 'bbbc6f25ed394a60a774fed961cb9fc1';
+var redirect_uri = 'http://localhost:3000/callback';
+var generateRandomString = function(length) {
+  var text = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
+var stateKey = 'spotify_auth_state';
+
+var spotifyApi = new SpotifyWebApi({
+  client_id: '8121c945a73d47149feb3d7368cf6241',
+  client_secret: 'bbbc6f25ed394a60a774fed961cb9fc1',
+  redirect_uri: 'http://localhost:3000/callback'
+})
+
+
+// Log in page
 app.get('/login', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  // application requests authorization
+  var scope = 'user-top-read user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -67,6 +79,8 @@ app.get('/login', function(req, res) {
     }));
 });
 
+
+// Spotify login redirects here
 app.get('/callback', function(req, res) { //requests refresh and access tokens after checking the state parameter
   var code = req.query.code || null;
   var state = req.query.state || null;
@@ -87,7 +101,7 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
       },
       json: true
     };
@@ -109,6 +123,34 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
           console.log(body);
         });
 
+        spotifyApi.setAccessToken(access_token);
+
+        spotifyApi.getMyTopTracks({
+          limit : 50,
+          offset : 0,
+          time_range : 'long_term'
+        }).then(
+          function(data) {
+            console.log('Artist albums', data.body);
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+
+        /*var options = {
+          url: 'https://api.spotify.com/v1/me/top/artists',
+          headers: { 'Authorization': 'Bearer ' + access_token },
+          json: true
+        };
+
+        // use the access token to access the Spotify Web API
+        request.get(options, function(error, response, body) {
+          console.log(error);
+          console.log(response);
+          console.log(body);
+        });*/
+
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
@@ -129,7 +171,7 @@ app.get('/refresh_token', function(req, res) {// requesting access token from re
   var refresh_token = req.query.refresh_token;
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+    headers: { 'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64')) },
     form: {
       grant_type: 'refresh_token',
       refresh_token: refresh_token
@@ -148,6 +190,7 @@ app.get('/refresh_token', function(req, res) {// requesting access token from re
 });
 
 app.get('/top', function (req, res, next) { //After login
+  //var topSongs = 
   res.render('top');
 })
 
