@@ -137,26 +137,7 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
             console.error(err);
           }
         );
-
-        /*var options = {
-          url: 'https://api.spotify.com/v1/me/top/artists',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-        };
-
-        // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
-          console.log(error);
-          console.log(response);
-          console.log(body);
-        });*/
-
-        // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+        
       } else {
         res.redirect('/#' +
           querystring.stringify({
