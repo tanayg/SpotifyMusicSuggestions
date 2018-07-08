@@ -137,7 +137,7 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
             console.error(err);
           }
         );
-        
+
       } else {
         res.redirect('/#' +
           querystring.stringify({
@@ -146,6 +146,7 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
       }
     });
   }
+  res.render('top');
 });
 
 app.get('/refresh_token', function(req, res) {// requesting access token from refresh token
@@ -169,10 +170,5 @@ app.get('/refresh_token', function(req, res) {// requesting access token from re
     }
   });
 });
-
-app.get('/top', function (req, res, next) { //After login
-  //var topSongs = 
-  res.render('top');
-})
 
 app.listen(3000);

@@ -3,6 +3,10 @@ Useful links
 2. Spotify API Reference - https://developer.spotify.com/documentation/web-api/reference/
 3. Github Project - https://github.com/tanayg/SpotifyMusicSuggestions
 4. Localhost - http://localhost:3000/
+5. Authorization Scopes - https://developer.spotify.com/documentation/general/guides/scopes/#user-top-read
+6. Node.js wrapper for Spotify API - https://github.com/thelinmichael/spotify-web-api-node/blob/master/src/spotify-web-api.js
+7. Wrapper reference - http://michaelthelin.se/spotify-web-api-node/
+
 
 Pending Tasks
 * Figma Protoype

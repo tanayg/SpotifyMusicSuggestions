@@ -7,16 +7,22 @@
     "Buffer": "0.0.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
-    "express": "^4.0.0",
+    "create-react-app": "^1.5.2",
+    "express": "^4.16.3",
     "jade": "^1.11.0",
     "morgan": "^1.9.0",
     "nib": "^1.1.2",
     "querystring": "^0.2.0",
+    "react": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
     "request": "^2.87.0",
     "spotify-web-api-node": "^3.1.1",
     "stylus": "^0.54.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "redux-devtools": "^3.4.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
