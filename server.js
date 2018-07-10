@@ -125,10 +125,39 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
 
         spotifyApi.setAccessToken(access_token);
 
+        // Long Term
         spotifyApi.getMyTopTracks({
           limit : 50,
           offset : 0,
           time_range : 'long_term'
+        }).then(
+          function(data) {
+            console.log('Artist albums', data.body);
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+
+        // Medium Term
+        spotifyApi.getMyTopTracks({
+          limit : 50,
+          offset : 0,
+          time_range : 'medium_term'
+        }).then(
+          function(data) {
+            console.log('Artist albums', data.body);
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+
+        // Short Term
+        spotifyApi.getMyTopTracks({
+          limit : 50,
+          offset : 0,
+          time_range : 'short_term'
         }).then(
           function(data) {
             console.log('Artist albums', data.body);
