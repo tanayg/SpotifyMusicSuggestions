@@ -125,42 +125,84 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
 
         spotifyApi.setAccessToken(access_token);
 
-        // Long Term
+        // Long Term Tracks
         spotifyApi.getMyTopTracks({
           limit : 50,
           offset : 0,
           time_range : 'long_term'
         }).then(
           function(data) {
-            console.log('Artist albums', data.body);
+            console.log('Top Tracks(Long Term)', data.body);
           },
           function(err) {
             console.error(err);
           }
         );
 
-        // Medium Term
+        // Medium Term Tracks
         spotifyApi.getMyTopTracks({
           limit : 50,
           offset : 0,
           time_range : 'medium_term'
         }).then(
           function(data) {
-            console.log('Artist albums', data.body);
+            console.log('Top Tracks(6 months)', data.body);
           },
           function(err) {
             console.error(err);
           }
         );
 
-        // Short Term
+        // Short Term Tracks
         spotifyApi.getMyTopTracks({
           limit : 50,
           offset : 0,
           time_range : 'short_term'
         }).then(
           function(data) {
-            console.log('Artist albums', data.body);
+            console.log('Top Tracks(4 weeks)', data.body);
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+
+        // Long Term Artists
+        spotifyApi.getMyTopArtists({
+          limit : 50,
+          offset : 0,
+          time_range : 'long_term'
+        }).then(
+          function(data) {
+            console.log('Top Artists(Long Term)', data.body);
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+
+        // Medium Term Artists
+        spotifyApi.getMyTopArtists({
+          limit : 50,
+          offset : 0,
+          time_range : 'medium_term'
+        }).then(
+          function(data) {
+            console.log('Top Artists(6 months)', data.body);
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+
+        // Short Term Artists
+        spotifyApi.getMyTopArtists({
+          limit : 50,
+          offset : 0,
+          time_range : 'short_term'
+        }).then(
+          function(data) {
+            console.log('Top Artists(4 weeks)', data.body);
           },
           function(err) {
             console.error(err);
