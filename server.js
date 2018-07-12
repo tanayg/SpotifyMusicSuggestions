@@ -35,7 +35,7 @@ app.use(express.static(__dirname + '/public'))
 
 
 // Home Page
-app.get('/', function (req, res, next) { 
+app.get('/', function (req, res) { 
   res.render('home');
 })
 
@@ -112,7 +112,7 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
 
-        var options = {
+        /*var options = {
           url: 'https://api.spotify.com/v1/me',
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
@@ -121,7 +121,7 @@ app.get('/callback', function(req, res) { //requests refresh and access tokens a
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
           console.log(body);
-        });
+        });*/
 
         spotifyApi.setAccessToken(access_token);
 
